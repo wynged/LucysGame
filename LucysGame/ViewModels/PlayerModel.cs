@@ -1,6 +1,6 @@
 ﻿namespace LucysGame
 {
-    internal class PlayerModel
+    internal class PlayerModel : ViewModelBase
     {
         public string Name
         {
@@ -10,9 +10,16 @@
             }
         }
 
-        public int V1 { get
+        public int V1
+        {
+            get
             {
                 return Player.ValV1;
+            }
+            set
+            {
+                Player.Cards["V1"] = new Card(value);
+                this.SetPropertyChanged("V1");
             }
         }
         public int V2 { get

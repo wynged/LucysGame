@@ -52,9 +52,10 @@ namespace LucysGame
         {
             foreach (Player p in players)
             {
-                foreach (KeyValuePair<string, Card> kvp in p.Cards)
+                foreach (string key in new List<string>( p.Cards.Keys))
                 {
-                    p.Cards[kvp.Key] = MainDeck.Take(1).First();
+                    p.Cards[key] = MainDeck.Take(1).First();
+                    MainDeck.RemoveAt(0);
                 }
             }
         }

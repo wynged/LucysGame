@@ -22,13 +22,17 @@ namespace LucysGame
         public GameModel()
         {
             TheBoard = new Board();
-            TheBoard.InitializeDeck();
+            
             Players = new List<PlayerModel>();
+
 
             this.AddPlayerModel("Jack");
             this.AddPlayerModel("Jill");
             this.AddPlayerModel("Jane");
+
+            TheBoard.StartGame();
         }
+
 
         public void AddPlayerModel(string _name)
         {
