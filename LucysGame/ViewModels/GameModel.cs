@@ -33,6 +33,10 @@ namespace LucysGame
             TheBoard.StartGame();
         }
 
+        public void NextTurn()
+        {
+
+        }
 
         public void AddPlayerModel(string _name)
         {

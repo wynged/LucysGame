@@ -32,5 +32,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button x:Name="button_NextTurn" Height="30" Margin="320,-250,0,0" Width="100">Next Turn</Button>
     </Grid>
 </Window>
