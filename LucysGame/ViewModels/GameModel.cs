@@ -36,18 +36,16 @@ namespace LucysGame
 
             NextTurnCommand = new ButtonCommand(NextTurn, ReadyForNextTurn);
 
-
             this.AddPlayerModel("Jack");
             this.AddPlayerModel("Jill");
             this.AddPlayerModel("Jane");
 
             TheBoard.StartGame();
-
         }
 
         public void NextTurn()
         {
-            TheBoard.NextPlayer();
+            TheBoard.NextPlayerAction();
             this.SetPropertyChanged("CurrentPlayerModel");
         }
 

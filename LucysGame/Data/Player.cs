@@ -53,5 +53,12 @@ namespace LucysGame
                 return Cards["H2"].Number;
             }
         }
+
+        internal void TakeActions(Board board)
+        {
+            //choose where to draw from
+
+            //choose where to place card
+        }
     }
 }

@@ -11,7 +11,6 @@ namespace LucysGame
         public List<Player> Players;
         public List<Card> MainDeck { get; internal set; }
         public Player CurrentPlayer { get; internal set; }
-
         public List<Card> DiscardPile;
 
         public Board()
@@ -43,18 +42,18 @@ namespace LucysGame
             return cards;
         }
 
-
         public void StartGame()
         {
             MainDeck = InitializeDeck();
             DealCards();
             CurrentPlayer = Players[0];
         }
+        
         private void DealCards()
         {
             foreach (Player p in Players)
             {
-                foreach (string key in new List<string>( p.Cards.Keys))
+                foreach (string key in new List<string>(p.Cards.Keys))
                 {
                     p.Cards[key] = MainDeck.Take(1).First();
                     MainDeck.RemoveAt(0);
@@ -62,7 +61,18 @@ namespace LucysGame
             }
         }
 
-        internal void NextPlayer()
+        internal void NextPlayerAction()
+        {
+            NextPlayer();
+            GetPlayerDecision();
+        }
+
+        private void GetPlayerDecision()
+        {
+            CurrentPlayer.TakeActions(this);
+        }
+
+        private void NextPlayer()
         {
             int i = Players.IndexOf(CurrentPlayer);
             if (i == Players.Count - 1)
@@ -73,25 +83,25 @@ namespace LucysGame
             {
                 CurrentPlayer = Players[i + 1];
             }
-        }
 
+        }
     }
 
     static class Extensions
-        {
-            private static Random rng = new Random();
+    {
+        private static Random rng = new Random();
 
-            public static void Shuffle<T>(this IList<T> list)
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
             {
-                int n = list.Count;
-                while (n > 1)
-                {
-                    n--;
-                    int k = rng.Next(n + 1);
-                    T value = list[k];
-                    list[k] = list[n];
-                    list[n] = value;
-                }
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
             }
         }
+    }
 }
