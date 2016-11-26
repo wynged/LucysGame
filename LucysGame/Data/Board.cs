@@ -8,21 +8,22 @@ namespace LucysGame
 {
     class Board
     {
-        public List<Player> players;
+        public List<Player> Players;
         public List<Card> MainDeck { get; internal set; }
+        public Player CurrentPlayer { get; internal set; }
 
         public List<Card> DiscardPile;
 
         public Board()
         {
             DiscardPile = new List<Card>();
-            players = new List<Player>();
+            Players = new List<Player>();
         }
 
         internal Player AddPlayer(string v)
         {
             Player newPlayer = new Player(v);
-            players.Add(newPlayer);
+            Players.Add(newPlayer);
             return newPlayer;
         }
 
@@ -42,15 +43,16 @@ namespace LucysGame
             return cards;
         }
 
+
         public void StartGame()
         {
             MainDeck = InitializeDeck();
             DealCards();
-
+            CurrentPlayer = Players[0];
         }
         private void DealCards()
         {
-            foreach (Player p in players)
+            foreach (Player p in Players)
             {
                 foreach (string key in new List<string>( p.Cards.Keys))
                 {
@@ -59,9 +61,23 @@ namespace LucysGame
                 }
             }
         }
+
+        internal void NextPlayer()
+        {
+            int i = Players.IndexOf(CurrentPlayer);
+            if (i == Players.Count - 1)
+            {
+                CurrentPlayer = Players[0];
+            }
+            else
+            {
+                CurrentPlayer = Players[i + 1];
+            }
+        }
+
     }
 
-        static class Extensions
+    static class Extensions
         {
             private static Random rng = new Random();
 

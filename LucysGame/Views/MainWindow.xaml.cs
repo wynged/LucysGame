@@ -22,12 +22,7 @@ namespace LucysGame
     {
         public MainWindow()
         {
-
             InitializeComponent();
-
-            GameModel gModel = new GameModel();
-
-            DataContext = gModel;  
         }
     }
 }

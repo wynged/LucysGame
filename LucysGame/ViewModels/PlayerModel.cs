@@ -2,6 +2,8 @@
 {
     internal class PlayerModel : ViewModelBase
     {
+        public Player Player { get; internal set; }
+
         public string Name
         {
             get
@@ -22,28 +24,31 @@
                 this.SetPropertyChanged("V1");
             }
         }
-        public int V2 { get
+        public int V2
+        {
+            get
             {
                 return Player.ValV2;
             }
         }
-        public int H1 { get
+        public int H1
+        {
+            get
             {
                 return Player.ValH1;
             }
         }
-        public int H2 { get
+        public int H2
+        {
+            get
             {
                 return Player.ValH2;
             }
         }
 
-        public Player Player { get; internal set; }
-
         public PlayerModel(Player p)
         {
             Player = p;
         }
-
     }
 }

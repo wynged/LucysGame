@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace LucysGame
 {
-    class GameModel
+    class GameModel : ViewModelBase
     {
         public Board TheBoard { get; internal set; }
         public List<PlayerModel> Players { get; }
+        public ButtonCommand NextTurnCommand { get; }
+
+        public string CurrentPlayerModel
+        {
+            get
+            {
+                return Players.Where(x => x.Player == TheBoard.CurrentPlayer).First().Name;
+            }
+        }
 
         public List<Card> MainDeckCards
         {
@@ -22,8 +31,10 @@ namespace LucysGame
         public GameModel()
         {
             TheBoard = new Board();
-            
+
             Players = new List<PlayerModel>();
+
+            NextTurnCommand = new ButtonCommand(NextTurn, ReadyForNextTurn);
 
 
             this.AddPlayerModel("Jack");
@@ -31,11 +42,18 @@ namespace LucysGame
             this.AddPlayerModel("Jane");
 
             TheBoard.StartGame();
+
         }
 
         public void NextTurn()
         {
+            TheBoard.NextPlayer();
+            this.SetPropertyChanged("CurrentPlayerModel");
+        }
 
+        public bool ReadyForNextTurn()
+        {
+            return true;
         }
 
         public void AddPlayerModel(string _name)
