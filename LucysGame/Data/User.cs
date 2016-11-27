@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LucysGame.Data
+namespace LucysGame
 {
-    public abstract class UserBase
+    public abstract class User
     {
-        abstract public CardChoice ChooseCard(List<Card> _playerCards, Card _discardCard);
+        abstract public CardChoice ChooseCard(List<int> _playerCardValues, int _discardCardValue);
 
-        abstract public CardPlacement PlaceCard(Player _player);
+        abstract public CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace);
     }
-
 
     public enum CardChoice { Discard, MainDeck}
 

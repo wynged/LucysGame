@@ -59,7 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Data\UserBase.cs" />
+    <Compile Include="Data\ComputerUser.cs" />
+    <Compile Include="Data\HumanUser.cs" />
+    <Compile Include="Data\User.cs" />
     <Compile Include="ViewModels\ButtonCommand.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">

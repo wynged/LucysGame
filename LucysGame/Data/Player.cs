@@ -10,6 +10,7 @@ namespace LucysGame
     {
         public Dictionary<string, Card> Cards;
         public string Name { get; internal set; }
+        private User User {get; set; } 
 
         public Player(string _name)
         {
@@ -19,6 +20,16 @@ namespace LucysGame
             Cards["V2"] = null;
             Cards["H1"] = null;
             Cards["H2"] = null;
+
+            User = new ComputerUser();
+        }
+
+        public List<int> CardValues
+        {
+            get
+            {
+                return Cards.Values.Select(x => x.Number).ToList();
+            }
         }
 
         public int ValV1
@@ -54,11 +65,21 @@ namespace LucysGame
             }
         }
 
-        internal void TakeActions(Board board)
+        public CardChoice PlayerCardChoice(Card _discardCard)
         {
-            //choose where to draw from
+            return User.ChooseCard(this.CardValues, _discardCard.Number);
+        }
 
-            //choose where to place card
+        public CardPlacement PlayerCardPlacement(Card _drawnCard)
+        {
+            return User.PlaceCard(this.CardValues, _drawnCard.Number);
+        }
+
+        internal Card SwapCard(string v, Card newCard)
+        {
+            Card oldCard = Cards[v];
+            Cards[v] = newCard;
+            return oldCard;
         }
     }
 }

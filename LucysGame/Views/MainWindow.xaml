@@ -34,5 +34,6 @@
         </ListBox>
         <Button x:Name="button_NextTurn" Command="{Binding NextTurnCommand}" Height="30" Margin="320,-250,0,0" Width="100">Next Turn</Button>
         <Label x:Name="label_CurrentPlayer" Content="{Binding CurrentPlayerModel}" Margin="400,50,0,0"/>
+        <Label x:Name="label_CardsLeftInDeck" Content="{Binding MainDeckCardString}" Margin="400,70,0,0"/>
     </Grid>
 </Window>

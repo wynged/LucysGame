@@ -12,6 +12,11 @@ namespace LucysGame
         public List<PlayerModel> Players { get; }
         public ButtonCommand NextTurnCommand { get; }
 
+        public string NumCardsInDeck { get
+            {
+                return TheBoard.MainDeck.Count.ToString();
+            } }
+
         public string CurrentPlayerModel
         {
             get
@@ -25,6 +30,14 @@ namespace LucysGame
             get
             {
                 return TheBoard.MainDeck;
+            }
+        }
+
+        public string MainDeckCardString
+        {
+            get
+            {
+                return String.Join("\n", TheBoard.MainDeck.Select(x => x.Number.ToString()));
             }
         }
 
@@ -46,7 +59,11 @@ namespace LucysGame
         public void NextTurn()
         {
             TheBoard.NextPlayerAction();
-            this.SetPropertyChanged("CurrentPlayerModel");
+        //    this.SetPropertyChanged("CurrentPlayerModel");
+            this.SetPropertyChanged("Players");
+            this.SetPropertyChanged("MainDeckCards");
+            this.SetPropertyChanged("MainDeckCards.Number");
+            this.SetPropertyChanged("MainDeckCardString");
         }
 
         public bool ReadyForNextTurn()

@@ -47,8 +47,14 @@ namespace LucysGame
             MainDeck = InitializeDeck();
             DealCards();
             CurrentPlayer = Players[0];
+            DiscardCard(TakeTopOfMainDeck());
         }
-        
+
+        private void DiscardCard(Card card)
+        {
+            DiscardPile.Add(card);
+        }
+
         private void DealCards()
         {
             foreach (Player p in Players)
@@ -64,12 +70,60 @@ namespace LucysGame
         internal void NextPlayerAction()
         {
             NextPlayer();
-            GetPlayerDecision();
+            PlayerTurn();
         }
 
-        private void GetPlayerDecision()
+        private void PlayerTurn()
         {
-            CurrentPlayer.TakeActions(this);
+            CardChoice choice = CurrentPlayer.PlayerCardChoice(DiscardPile.Last());
+            Card newCard = GetCardFromChoice(choice);
+
+            CardPlacement placement = CurrentPlayer.PlayerCardPlacement(newCard);
+            MakePlayerCardPlacement(placement, newCard);
+        }
+
+        private void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
+        {
+            switch (placement) {
+                case CardPlacement.H1:
+                    DiscardCard(CurrentPlayer.SwapCard("H1", newCard));
+                    break;
+               
+            }
+        }
+
+
+        private Card TakeTopOfDiscardPile()
+        {
+            if (DiscardPile.Count < 1)
+            {
+                return null;
+            }
+            else
+            {
+                Card c = DiscardPile.Last();
+                DiscardPile.Remove(c);
+                return c;
+            }
+        }
+
+        private Card GetCardFromChoice(CardChoice choice)
+        {
+            if (choice == CardChoice.Discard)
+            {
+                return TakeTopOfDiscardPile();
+            }
+            else
+            {
+                return TakeTopOfMainDeck();
+            }
+        }
+
+        private Card TakeTopOfMainDeck()
+        {
+            Card c = MainDeck[0];
+            MainDeck.RemoveAt(0);
+            return c;
         }
 
         private void NextPlayer()
