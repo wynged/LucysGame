@@ -19,6 +19,14 @@ namespace LucysGame
             Players = new List<Player>();
         }
 
+        public Card TopOfDiscardPile
+        {
+            get
+            {
+                return DiscardPile.Last();
+            }
+        }
+
         internal Player AddPlayer(string v)
         {
             Player newPlayer = new Player(v);
@@ -50,11 +58,6 @@ namespace LucysGame
             DiscardCard(TakeTopOfMainDeck());
         }
 
-        private void DiscardCard(Card card)
-        {
-            DiscardPile.Add(card);
-        }
-
         private void DealCards()
         {
             foreach (Player p in Players)
@@ -67,31 +70,56 @@ namespace LucysGame
             }
         }
 
-        internal void NextPlayerAction()
+        internal void DiscardCard(Card card)
         {
-            NextPlayer();
-            PlayerTurn();
+            DiscardPile.Add(card);
         }
 
-        private void PlayerTurn()
+        internal Player GoNextPlayer()
+        {
+            MoveToNextPlayer();
+            return CurrentPlayer;
+        }
+
+        internal Card GetPlayersNextCard()
         {
             CardChoice choice = CurrentPlayer.PlayerCardChoice(DiscardPile.Last());
             Card newCard = GetCardFromChoice(choice);
+            return newCard;
 
-            CardPlacement placement = CurrentPlayer.PlayerCardPlacement(newCard);
-            MakePlayerCardPlacement(placement, newCard);
         }
 
-        private void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
+        internal CardPlacement GetPlayerCardPlacement(Card newCard)
+        {
+            CardPlacement placement = CurrentPlayer.PlayerCardPlacement(newCard);
+
+            return placement;
+
+            //TODO implement making a card placement on the player
+            MakePlayerCardPlacement(placement, newCard);
+
+        }
+
+        internal void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
         {
             switch (placement) {
                 case CardPlacement.H1:
                     DiscardCard(CurrentPlayer.SwapCard("H1", newCard));
                     break;
-               
+                case CardPlacement.H2:
+                    DiscardCard(CurrentPlayer.SwapCard("H2", newCard));
+                    break;
+                case CardPlacement.V1:
+                    DiscardCard(CurrentPlayer.SwapCard("V1", newCard));
+                    break;
+                case CardPlacement.V2:
+                    DiscardCard(CurrentPlayer.SwapCard("V2", newCard));
+                    break;
+                case CardPlacement.Discard:
+                    DiscardCard(newCard);
+                    break;
             }
         }
-
 
         private Card TakeTopOfDiscardPile()
         {
@@ -107,7 +135,7 @@ namespace LucysGame
             }
         }
 
-        private Card GetCardFromChoice(CardChoice choice)
+        internal Card GetCardFromChoice(CardChoice choice)
         {
             if (choice == CardChoice.Discard)
             {
@@ -126,7 +154,7 @@ namespace LucysGame
             return c;
         }
 
-        private void NextPlayer()
+        private void MoveToNextPlayer()
         {
             int i = Players.IndexOf(CurrentPlayer);
             if (i == Players.Count - 1)

@@ -1,4 +1,6 @@
-﻿namespace LucysGame
+﻿using System;
+
+namespace LucysGame
 {
     internal class PlayerModel : ViewModelBase
     {
@@ -37,6 +39,11 @@
             {
                 return Player.ValH1;
             }
+            set
+            {
+                Player.Cards["H1"] = new Card(value);
+                this.SetPropertyChanged("H1");
+            }
         }
         public int H2
         {
@@ -49,6 +56,11 @@
         public PlayerModel(Player p)
         {
             Player = p;
+        }
+
+        internal void RefreshCards()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -59,19 +59,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Data\ComputerUser.cs" />
-    <Compile Include="Data\HumanUser.cs" />
-    <Compile Include="Data\User.cs" />
+    <Compile Include="Users\ComputerUser.cs" />
+    <Compile Include="Users\HumanUser.cs" />
+    <Compile Include="Users\User.cs" />
     <Compile Include="ViewModels\ButtonCommand.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Board.cs" />
+    <Compile Include="Domain\Board.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="Data\Player.cs" />
-    <Compile Include="ViewModels\GameModel.cs" />
+    <Compile Include="Domain\Player.cs" />
+    <Compile Include="ViewModels\BoardModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

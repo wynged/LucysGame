@@ -16,7 +16,7 @@ namespace LucysGame
 
         public override CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace)
         {
-            return CardPlacement.H1;
+            return CardPlacement.V1;
         }
 
     }
