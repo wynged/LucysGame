@@ -8,18 +8,18 @@ namespace LucysGame
 {
     public class Player
     {
-        public Dictionary<string, Card> Cards;
+        public Dictionary<string, Card> CardDict;
         public string Name { get; internal set; }
         private User User {get; set; } 
 
         public Player(string _name)
         {
             Name = _name;
-            Cards = new Dictionary<string, Card>();
-            Cards["V1"] = null;
-            Cards["V2"] = null;
-            Cards["H1"] = null;
-            Cards["H2"] = null;
+            CardDict = new Dictionary<string, Card>();
+            CardDict["V1"] = null;
+            CardDict["V2"] = null;
+            CardDict["H1"] = null;
+            CardDict["H2"] = null;
 
             User = new ComputerUser();
         }
@@ -28,7 +28,7 @@ namespace LucysGame
         {
             get
             {
-                return Cards.Values.Select(x => x.Number).ToList();
+                return CardDict.Values.Select(x => x.Number).ToList();
             }
         }
 
@@ -36,38 +36,38 @@ namespace LucysGame
         {
             get
             {
-                if (Cards["V1"] == null) return 0;
-                return Cards["V1"].Number;
+                if (CardDict["V1"] == null) return 0;
+                return CardDict["V1"].Number;
             }
         }
         public int ValV2
         {
             get
             {
-                if (Cards["V2"] == null) return 0;
-                return Cards["V2"].Number;
+                if (CardDict["V2"] == null) return 0;
+                return CardDict["V2"].Number;
             }
         }
         public int ValH1
         {
             get
             {
-                if (Cards["H1"] == null) return 0;
-                return Cards["H1"].Number;
+                if (CardDict["H1"] == null) return 0;
+                return CardDict["H1"].Number;
             }
         }
         public int ValH2
         {
             get
             {
-                if (Cards["H2"] == null) return 0;
-                return Cards["H2"].Number;
+                if (CardDict["H2"] == null) return 0;
+                return CardDict["H2"].Number;
             }
         }
 
-        public CardChoice PlayerCardChoice(Card _discardCard)
+        public CardChoice PlayerCardChoice(BoardState state)
         {
-            return User.ChooseCard(this.CardValues, _discardCard.Number);
+            return User.ChooseCard(state);
         }
 
         public CardPlacement PlayerCardPlacement(Card _drawnCard)
@@ -77,8 +77,8 @@ namespace LucysGame
 
         internal Card SwapCard(string v, Card newCard)
         {
-            Card oldCard = Cards[v];
-            Cards[v] = newCard;
+            Card oldCard = CardDict[v];
+            CardDict[v] = newCard;
             return oldCard;
         }
     }

@@ -8,7 +8,7 @@ namespace LucysGame
 {
     public abstract class User
     {
-        abstract public CardChoice ChooseCard(List<int> _playerCardValues, int _discardCardValue);
+        abstract public CardChoice ChooseCard(BoardState state);// List<int> _playerCardValues, int _discardCardValue);
 
         abstract public CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace);
     }

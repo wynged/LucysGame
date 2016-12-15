@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq;
 
-namespace LucysGame
+namespace LucysGame.ViewModels
 {
     internal class PlayerModel : ViewModelBase
     {
@@ -22,7 +23,7 @@ namespace LucysGame
             }
             set
             {
-                Player.Cards["V1"] = new Card(value);
+                Player.CardDict["V1"] = new Card(value);
                 this.SetPropertyChanged("V1");
             }
         }
@@ -41,7 +42,7 @@ namespace LucysGame
             }
             set
             {
-                Player.Cards["H1"] = new Card(value);
+                Player.CardDict["H1"] = new Card(value);
                 this.SetPropertyChanged("H1");
             }
         }
@@ -53,14 +54,18 @@ namespace LucysGame
             }
         }
 
+        CardModel[] Cards;
+
         public PlayerModel(Player p)
         {
             Player = p;
+            Cards = p.CardDict.Values.Select(c => new CardModel(c)).ToArray();
         }
 
-        internal void RefreshCards()
-        {
-            throw new NotImplementedException();
-        }
+        public string CardValues { get
+            {
+                return String.Join("-", Cards.Select(cm => cm.CardVal));
+            } }
+
     }
 }

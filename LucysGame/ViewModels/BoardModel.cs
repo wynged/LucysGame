@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace LucysGame
+namespace LucysGame.ViewModels
 {
     class BoardModel : ViewModelBase
     {
@@ -39,7 +39,6 @@ namespace LucysGame
 
             }
             private set {
-                this.SetPropertyChanged("Players");
             }
         }
         public string NumCardsInDeck
@@ -49,11 +48,11 @@ namespace LucysGame
                 return TheBoard.MainDeck.Count.ToString();
             }
         }
-        public string CurrentPlayerModelName
+        public string NextPlayerName
         {
             get
             {
-                return Players.Where(x => x.Player == TheBoard.CurrentPlayer).First().Name;
+                return TheBoard.GetNextPlayer().Name;
             }
 
         }
@@ -68,7 +67,6 @@ namespace LucysGame
                 if (value != _mainDeckCards)
                 {
                     _mainDeckCards = value;
-                    this.SetPropertyChanged("MainDeckCards");
                 }
             }
         }
@@ -79,34 +77,40 @@ namespace LucysGame
                 return String.Join("\n", TheBoard.MainDeck.Select(x => x.Number.ToString()));
             }
         }
+        public ObservableCollection<Card> DiscardPile
+        {
+            get
+            {
+                return new ObservableCollection<Card>(TheBoard.DiscardPile);
+            }
+        }
 
         public void NextTurn()
         {
-            Player changePlayer = TheBoard.GoNextPlayer();
-            PlayerModel changePM = GetModelOfPlayer(changePlayer);
-            CardChoice choice = TheBoard.CurrentPlayer.PlayerCardChoice(TheBoard.TopOfDiscardPile);
+            TheBoard.GoNextPlayer();
+            CardChoice choice = TheBoard.CurrentPlayer.PlayerCardChoice(TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer));
             Card card = TheBoard.GetCardFromChoice(choice);
             CardPlacement placement = TheBoard.CurrentPlayer.PlayerCardPlacement(card);
             TheBoard.MakePlayerCardPlacement(placement, card);
-            RefreshCards();
-            this.SetPropertyChanged("CurrentPlayerModelName");
-            this.SetPropertyChanged("MainDeckCardString");
+            RefreshUI();
         }
 
-        private PlayerModel GetModelOfPlayer(Player changePlayer)
+        private PlayerModel GetModelOfPlayer(Player Player)
         {
-            PlayerModel PM = Players.First(pm => pm.Player == changePlayer);
+            PlayerModel PM = Players.First(pm => pm.Player == Player);
             return PM;
         }
 
-        private void RefreshCards()
+        private void RefreshUI()
         {
-            MainDeckCards = new ObservableCollection<Card>( TheBoard.MainDeck);
             _players.Clear();
             foreach (Player p in TheBoard.Players)
             {
                 _players.Add(new PlayerModel(p));
-            } 
+            }
+            this.SetPropertyChanged("MainDeckCards");
+            this.SetPropertyChanged("DiscardPile");
+            this.SetPropertyChanged("NextPlayerName");
         }
 
         public bool ReadyForNextTurn()

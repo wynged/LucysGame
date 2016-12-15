@@ -8,7 +8,7 @@ namespace LucysGame
 {
     class HumanUser : User
     {
-        public override CardChoice ChooseCard(List<int> _playerCardValues, int _discardCardValue)
+        public override CardChoice ChooseCard(BoardState state)
         {
             throw new NotImplementedException();
         }

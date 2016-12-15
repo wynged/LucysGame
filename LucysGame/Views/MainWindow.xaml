@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LucysGame"
+        xmlns:local="clr-namespace:LucysGame.ViewModels"
         mc:Ignorable="d"
         Title="Lucy'sGame" Height="350" Width="525">
     <Window.DataContext>
@@ -15,10 +15,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Path=Name}">-</TextBlock>
-                        <TextBlock Text="{Binding Path=V1}">,</TextBlock>
-                        <TextBlock Text="{Binding Path=V2}">,</TextBlock>
-                        <TextBlock Text="{Binding Path=H1}">,</TextBlock>
-                        <TextBlock Text="{Binding Path=H2}"/>
+                        <TextBlock Text="{Binding Path=CardValues}">,</TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -33,13 +30,14 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="button_NextTurn" Command="{Binding NextTurnCommand}" Height="30" Margin="320,-250,0,0" Width="100">Next Turn</Button>
-        <Label x:Name="label_CurrentPlayer" Content="{Binding CurrentPlayerModelName}" Margin="400,50,0,0"/>
-        <ItemsControl Name="items_DiscardPile" Margin="400,70,10,20" ItemsSource="DiscardPile" >
+        <Label x:Name="label_CurrentPlayer" Content="{Binding NextPlayerName}" Margin="400,50,0,0"/>
+        <ItemsControl Name="items_DiscardPile" Margin="400,70,10,20" ItemsSource="{Binding Path=DiscardPile}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,0,0,5" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Visibility}"/>
                         <TextBlock Text="{Binding Number}"/>
-                    </Grid>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

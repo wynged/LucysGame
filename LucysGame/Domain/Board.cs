@@ -12,6 +12,13 @@ namespace LucysGame
         public List<Card> MainDeck { get; internal set; }
         public Player CurrentPlayer { get; internal set; }
         public List<Card> DiscardPile;
+        public Card TopOfDiscardPile
+        {
+            get
+            {
+                return DiscardPile.Last();
+            }
+        }
 
         public Board()
         {
@@ -19,12 +26,13 @@ namespace LucysGame
             Players = new List<Player>();
         }
 
-        public Card TopOfDiscardPile
+        public BoardState GetBoardStateOfPlayer(Player p)
         {
-            get
-            {
-                return DiscardPile.Last();
-            }
+            BoardState state = new BoardState();
+            state.PlayerCards = CurrentPlayer.CardDict.Values.ToArray();
+            state.DiscardPile = DiscardPile.ToArray();
+
+            return state;
         }
 
         internal Player AddPlayer(string v)
@@ -62,9 +70,13 @@ namespace LucysGame
         {
             foreach (Player p in Players)
             {
-                foreach (string key in new List<string>(p.Cards.Keys))
+                foreach (string key in new List<string>(p.CardDict.Keys))
                 {
-                    p.Cards[key] = MainDeck.Take(1).First();
+                    p.CardDict[key] = MainDeck.Take(1).First();
+                    if (key.Contains("V"))
+                    {
+                        p.CardDict[key].Visibility = CardVisibilityState.Public;
+                    }
                     MainDeck.RemoveAt(0);
                 }
             }
@@ -72,32 +84,14 @@ namespace LucysGame
 
         internal void DiscardCard(Card card)
         {
+            card.Visibility = CardVisibilityState.Public;
             DiscardPile.Add(card);
         }
 
-        internal Player GoNextPlayer()
+        internal void GoNextPlayer()
         {
-            MoveToNextPlayer();
-            return CurrentPlayer;
-        }
-
-        internal Card GetPlayersNextCard()
-        {
-            CardChoice choice = CurrentPlayer.PlayerCardChoice(DiscardPile.Last());
-            Card newCard = GetCardFromChoice(choice);
-            return newCard;
-
-        }
-
-        internal CardPlacement GetPlayerCardPlacement(Card newCard)
-        {
-            CardPlacement placement = CurrentPlayer.PlayerCardPlacement(newCard);
-
-            return placement;
-
-            //TODO implement making a card placement on the player
-            MakePlayerCardPlacement(placement, newCard);
-
+            Player next = GetNextPlayer();
+            CurrentPlayer = next;
         }
 
         internal void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
@@ -121,20 +115,6 @@ namespace LucysGame
             }
         }
 
-        private Card TakeTopOfDiscardPile()
-        {
-            if (DiscardPile.Count < 1)
-            {
-                return null;
-            }
-            else
-            {
-                Card c = DiscardPile.Last();
-                DiscardPile.Remove(c);
-                return c;
-            }
-        }
-
         internal Card GetCardFromChoice(CardChoice choice)
         {
             if (choice == CardChoice.Discard)
@@ -154,16 +134,30 @@ namespace LucysGame
             return c;
         }
 
-        private void MoveToNextPlayer()
+        private Card TakeTopOfDiscardPile()
+        {
+            if (DiscardPile.Count < 1)
+            {
+                return null;
+            }
+            else
+            {
+                Card c = DiscardPile.Last();
+                DiscardPile.Remove(c);
+                return c;
+            }
+        }
+
+        internal Player GetNextPlayer()
         {
             int i = Players.IndexOf(CurrentPlayer);
             if (i == Players.Count - 1)
             {
-                CurrentPlayer = Players[0];
+                return Players[0];
             }
             else
             {
-                CurrentPlayer = Players[i + 1];
+                return Players[i + 1];
             }
 
         }

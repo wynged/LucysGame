@@ -8,9 +8,18 @@ namespace LucysGame
 {
     class ComputerUser : User
     {
-        public override CardChoice ChooseCard(List<int> _playerCardValues, int _discardCardValue)
+        PythonRunner _pyRun;
+        public ComputerUser()
         {
+            _pyRun = new PythonRunner();
+        }
+
+        public override CardChoice ChooseCard(BoardState state)
+        {
+            string sum = _pyRun.RunScript(3, 4);
+
             return CardChoice.MainDeck;
+
         }
 
 
