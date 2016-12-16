@@ -4,8 +4,6 @@
     {
         public Card[] PlayerCards { get;  set; }
         public Card[] DiscardPile { get;  set; }
-
-        
         
     }
 }

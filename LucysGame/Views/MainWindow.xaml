@@ -35,7 +35,6 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Visibility}"/>
                         <TextBlock Text="{Binding Number}"/>
                     </StackPanel>
                 </DataTemplate>

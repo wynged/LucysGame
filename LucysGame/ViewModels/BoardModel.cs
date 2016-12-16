@@ -26,6 +26,7 @@ namespace LucysGame.ViewModels
             this.AddPlayer("Jane");
 
             TheBoard.StartGame();
+            RefreshUI();
         }
 
         public ButtonCommand NextTurnCommand { get; }

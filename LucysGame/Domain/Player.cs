@@ -78,6 +78,14 @@ namespace LucysGame
         internal Card SwapCard(string v, Card newCard)
         {
             Card oldCard = CardDict[v];
+            if (v.Contains("V"))
+            {
+                newCard.Visibility = CardVisibilityState.Public;
+            }
+            else
+            {
+                newCard.Visibility = CardVisibilityState.Known;
+            }
             CardDict[v] = newCard;
             return oldCard;
         }

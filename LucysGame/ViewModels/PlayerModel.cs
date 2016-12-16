@@ -15,44 +15,44 @@ namespace LucysGame.ViewModels
             }
         }
 
-        public int V1
-        {
-            get
-            {
-                return Player.ValV1;
-            }
-            set
-            {
-                Player.CardDict["V1"] = new Card(value);
-                this.SetPropertyChanged("V1");
-            }
-        }
-        public int V2
-        {
-            get
-            {
-                return Player.ValV2;
-            }
-        }
-        public int H1
-        {
-            get
-            {
-                return Player.ValH1;
-            }
-            set
-            {
-                Player.CardDict["H1"] = new Card(value);
-                this.SetPropertyChanged("H1");
-            }
-        }
-        public int H2
-        {
-            get
-            {
-                return Player.ValH2;
-            }
-        }
+        //public int V1
+        //{
+        //    get
+        //    {
+        //        return Player.ValV1;
+        //    }
+        //    set
+        //    {
+        //        Player.CardDict["V1"] = new Card(value);
+        //        this.SetPropertyChanged("V1");
+        //    }
+        //}
+        //public int V2
+        //{
+        //    get
+        //    {
+        //        return Player.ValV2;
+        //    }
+        //}
+        //public int H1
+        //{
+        //    get
+        //    {
+        //        return Player.ValH1;
+        //    }
+        //    set
+        //    {
+        //        Player.CardDict["H1"] = new Card(value);
+        //        this.SetPropertyChanged("H1");
+        //    }
+        //}
+        //public int H2
+        //{
+        //    get
+        //    {
+        //        return Player.ValH2;
+        //    }
+        //}
 
         CardModel[] Cards;
 
