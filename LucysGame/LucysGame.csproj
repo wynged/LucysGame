@@ -105,9 +105,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LucyGame-Domain\LucyGame-Domain.csproj">
+    <ProjectReference Include="..\LucyGame-Domain\LucyGame.Domain.csproj">
       <Project>{75ea8ac8-021e-45cb-ad83-85ac0e024239}</Project>
-      <Name>LucyGame-Domain</Name>
+      <Name>LucyGame.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

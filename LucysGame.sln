@@ -9,7 +9,9 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LucyLearner", "LucyLearner\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONUtil", "JSONUtil\JSONUtil.csproj", "{3651EFF4-C020-433E-A3C9-3627C8355B6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucyGame-Domain", "LucyGame-Domain\LucyGame-Domain.csproj", "{75EA8AC8-021E-45CB-AD83-85AC0E024239}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucyGame.Domain", "LucyGame-Domain\LucyGame.Domain.csproj", "{75EA8AC8-021E-45CB-AD83-85AC0E024239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucyGame.Users", "LucyGame.Users\LucyGame.Users.csproj", "{44A33205-41A9-4F8F-AEF8-6D149209D0EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{75EA8AC8-021E-45CB-AD83-85AC0E024239}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75EA8AC8-021E-45CB-AD83-85AC0E024239}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75EA8AC8-021E-45CB-AD83-85AC0E024239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A33205-41A9-4F8F-AEF8-6D149209D0EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A33205-41A9-4F8F-AEF8-6D149209D0EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A33205-41A9-4F8F-AEF8-6D149209D0EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A33205-41A9-4F8F-AEF8-6D149209D0EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
