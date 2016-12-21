@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using LucysGame.Domain;
+using JSONUtil;
 
 namespace LucysGame.ViewModels
 {
@@ -91,10 +88,23 @@ namespace LucysGame.ViewModels
         {
             TheBoard.GoNextPlayer();
 
+            BoardState state = TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer);
+
             CardChoice choice = GetModelOfPlayer(TheBoard.CurrentPlayer).PlayerCardChoice(TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer));
             Card card = TheBoard.GetCardFromChoice(choice);
             CardPlacement placement = GetModelOfPlayer(TheBoard.CurrentPlayer).PlayerCardPlacement(card);
-            TheBoard.MakePlayerCardPlacement(placement, card);
+            int change = TheBoard.MakePlayerCardPlacement(placement, card);
+
+            DecisionResults results = new DecisionResults();
+            results.DrawChoice = choice;
+            results.DrawnCardValue = card.Number;
+            results.PlacementChoice = placement;
+            results.HandValueChange = change;
+
+
+
+            JSONUtil.JSONwriter.RecordStateAndResults(state, results);
+
             RefreshUI();
         }
 

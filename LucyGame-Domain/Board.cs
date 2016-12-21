@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LucysGame.Domain
 {
@@ -94,25 +92,40 @@ namespace LucysGame.Domain
             CurrentPlayer = next;
         }
 
-        public void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
+        public int MakePlayerCardPlacement(CardPlacement placement, Card newCard)
         {
             switch (placement) {
                 case CardPlacement.H1:
-                    DiscardCard(CurrentPlayer.SwapCard("H1", newCard));
-                    break;
+                    {
+                        int oldVal = CurrentPlayer.CardDict["H1"].Number;
+                        DiscardCard(CurrentPlayer.SwapCard("H1", newCard));
+                        return newCard.Number - oldVal;
+                    }
                 case CardPlacement.H2:
-                    DiscardCard(CurrentPlayer.SwapCard("H2", newCard));
-                    break;
+                    {
+                        int oldVal = CurrentPlayer.CardDict["H2"].Number;
+                        DiscardCard(CurrentPlayer.SwapCard("H2", newCard));
+                        return newCard.Number - oldVal;
+                    }
                 case CardPlacement.V1:
-                    DiscardCard(CurrentPlayer.SwapCard("V1", newCard));
-                    break;
+                    {
+                        int oldVal = CurrentPlayer.CardDict["V1"].Number;
+                        DiscardCard(CurrentPlayer.SwapCard("V1", newCard));
+                        return newCard.Number - oldVal;
+                    }
                 case CardPlacement.V2:
-                    DiscardCard(CurrentPlayer.SwapCard("V2", newCard));
-                    break;
+                    {
+                        int oldVal = CurrentPlayer.CardDict["V2"].Number;
+                        DiscardCard(CurrentPlayer.SwapCard("V2", newCard));
+                        return newCard.Number - oldVal;
+                    }
                 case CardPlacement.Discard:
-                    DiscardCard(newCard);
-                    break;
+                    {
+                        DiscardCard(newCard);
+                        return 0;
+                    }
             }
+            return 0;
         }
 
         public Card GetCardFromChoice(CardChoice choice)

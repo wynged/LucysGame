@@ -44,6 +44,7 @@
     <Compile Include="BoardState.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardVisibilityState.cs" />
+    <Compile Include="DecisionResults.cs" />
     <Compile Include="LucyEnums.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

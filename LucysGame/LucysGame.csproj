@@ -101,6 +101,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JSONUtil\JSONUtil.csproj">
+      <Project>{3651eff4-c020-433e-a3c9-3627c8355b6c}</Project>
+      <Name>JSONUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LucyGame-Domain\LucysGame.Domain.csproj">
       <Project>{75ea8ac8-021e-45cb-ad83-85ac0e024239}</Project>
       <Name>LucysGame.Domain</Name>

@@ -18,10 +18,14 @@ namespace LucysGame.ViewModels
         public string CardVal {
             get
             {
-                if (_card == null) return "?";
+                if (_card == null) return "N";
                 if(_card.Visibility == CardVisibilityState.Public)
                 {
                     return _card.Number.ToString();
+                }
+                else if(_card.Visibility == CardVisibilityState.Known)
+                {
+                    return "?";
                 }
                 else
                 {
