@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace LucysGame.Domain
 {
     public class Player
     {
         public Dictionary<string, Card> CardDict;
         public string Name { get; internal set; }
-        private User User {get; set; } 
+        //private User User {get; set; } 
+        public PlayerType Type { get; set; }
 
         public Player(string _name)
         {
@@ -21,7 +23,8 @@ namespace LucysGame.Domain
             CardDict["H1"] = null;
             CardDict["H2"] = null;
 
-            User = new ComputerUser();
+            Type = PlayerType.Random;
+            //User = new ComputerUser();
         }
 
         public List<int> CardValues
@@ -65,15 +68,7 @@ namespace LucysGame.Domain
             }
         }
 
-        public CardChoice PlayerCardChoice(BoardState state)
-        {
-            return User.ChooseCard(state);
-        }
 
-        public CardPlacement PlayerCardPlacement(Card _drawnCard)
-        {
-            return User.PlaceCard(this.CardValues, _drawnCard.Number);
-        }
 
         internal Card SwapCard(string v, Card newCard)
         {

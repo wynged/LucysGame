@@ -7,8 +7,8 @@
     <ProjectGuid>{75EA8AC8-021E-45CB-AD83-85AC0E024239}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LucyGame_Domain</RootNamespace>
-    <AssemblyName>LucyGame-Domain</AssemblyName>
+    <RootNamespace>LucysGame.Domain</RootNamespace>
+    <AssemblyName>LucysGame.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,6 +44,7 @@
     <Compile Include="BoardState.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardVisibilityState.cs" />
+    <Compile Include="LucyEnums.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

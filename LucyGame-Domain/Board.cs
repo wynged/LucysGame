@@ -35,7 +35,7 @@ namespace LucysGame.Domain
             return state;
         }
 
-        internal Player AddPlayer(string v)
+        public Player AddPlayer(string v)
         {
             Player newPlayer = new Player(v);
             Players.Add(newPlayer);
@@ -88,13 +88,13 @@ namespace LucysGame.Domain
             DiscardPile.Add(card);
         }
 
-        internal void GoNextPlayer()
+        public void GoNextPlayer()
         {
             Player next = GetNextPlayer();
             CurrentPlayer = next;
         }
 
-        internal void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
+        public void MakePlayerCardPlacement(CardPlacement placement, Card newCard)
         {
             switch (placement) {
                 case CardPlacement.H1:
@@ -115,7 +115,7 @@ namespace LucysGame.Domain
             }
         }
 
-        internal Card GetCardFromChoice(CardChoice choice)
+        public Card GetCardFromChoice(CardChoice choice)
         {
             if (choice == CardChoice.Discard)
             {
@@ -148,7 +148,7 @@ namespace LucysGame.Domain
             }
         }
 
-        internal Player GetNextPlayer()
+        public Player GetNextPlayer()
         {
             int i = Players.IndexOf(CurrentPlayer);
             if (i == Players.Count - 1)

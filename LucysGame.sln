@@ -5,13 +5,13 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucysGame", "LucysGame\LucysGame.csproj", "{A4579248-95CC-4CCD-BCD7-D79CF9B2E0FE}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LucyLearner", "LucyLearner\LucyLearner.pyproj", "{187C95BB-B7D1-40E9-AC12-1460652EEBCF}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LucysLearner", "LucyLearner\LucysLearner.pyproj", "{187C95BB-B7D1-40E9-AC12-1460652EEBCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONUtil", "JSONUtil\JSONUtil.csproj", "{3651EFF4-C020-433E-A3C9-3627C8355B6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucyGame.Domain", "LucyGame-Domain\LucyGame.Domain.csproj", "{75EA8AC8-021E-45CB-AD83-85AC0E024239}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucysGame.Domain", "LucyGame-Domain\LucysGame.Domain.csproj", "{75EA8AC8-021E-45CB-AD83-85AC0E024239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucyGame.Users", "LucyGame.Users\LucyGame.Users.csproj", "{44A33205-41A9-4F8F-AEF8-6D149209D0EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucysGame.Users", "LucyGame.Users\LucysGame.Users.csproj", "{44A33205-41A9-4F8F-AEF8-6D149209D0EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

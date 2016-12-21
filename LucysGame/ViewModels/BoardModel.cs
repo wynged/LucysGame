@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using LucysGame;
+using LucysGame.Domain;
 
 namespace LucysGame.ViewModels
 {
@@ -91,9 +91,9 @@ namespace LucysGame.ViewModels
         {
             TheBoard.GoNextPlayer();
 
-            CardChoice choice = TheBoard.CurrentPlayer.PlayerCardChoice(TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer));
+            CardChoice choice = GetModelOfPlayer(TheBoard.CurrentPlayer).PlayerCardChoice(TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer));
             Card card = TheBoard.GetCardFromChoice(choice);
-            CardPlacement placement = TheBoard.CurrentPlayer.PlayerCardPlacement(card);
+            CardPlacement placement = GetModelOfPlayer(TheBoard.CurrentPlayer).PlayerCardPlacement(card);
             TheBoard.MakePlayerCardPlacement(placement, card);
             RefreshUI();
         }

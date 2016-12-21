@@ -59,10 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Users\ComputerUser.cs" />
-    <Compile Include="Users\HumanUser.cs" />
-    <Compile Include="Users\PythonRunner.cs" />
-    <Compile Include="Users\User.cs" />
     <Compile Include="ViewModels\ButtonCommand.cs" />
     <Compile Include="ViewModels\CardModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -105,9 +101,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LucyGame-Domain\LucyGame.Domain.csproj">
+    <ProjectReference Include="..\LucyGame-Domain\LucysGame.Domain.csproj">
       <Project>{75ea8ac8-021e-45cb-ad83-85ac0e024239}</Project>
-      <Name>LucyGame.Domain</Name>
+      <Name>LucysGame.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LucyGame.Users\LucysGame.Users.csproj">
+      <Project>{44a33205-41a9-4f8f-aef8-6d149209d0ef}</Project>
+      <Name>LucysGame.Users</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

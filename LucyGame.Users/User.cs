@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LucysGame.Domain;
 
-namespace LucysGame
+namespace LucysGame.User
 {
-    public abstract class User
+    public  static class User
     {
-        abstract public CardChoice ChooseCard(BoardState state);// List<int> _playerCardValues, int _discardCardValue);
+        public static CardChoice ChooseCard(BoardState state) { return CardChoice.Discard; }// List<int> _playerCardValues, int _discardCardValue);
 
-        abstract public CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace);
+        public static CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace) { return CardPlacement.Discard; }
     }
 
-    public enum CardChoice { Discard, MainDeck}
 
-    public enum CardPlacement { V1, V2, H1, H2, Discard }
 }

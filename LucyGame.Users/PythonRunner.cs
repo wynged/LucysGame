@@ -1,26 +1,22 @@
 ﻿using System.Diagnostics;
 using System.IO;
 
-namespace LucysGame
+
+namespace LucysGame.User
 {
-    internal class PythonRunner
+    internal static class PythonRunner
     {
-        private string python;
-        private string myPythonApp;
+        
 
-        public PythonRunner()
+        
+        internal static string RunScript(int x, int y)
         {
-
             // full path of python interpreter  
-            python = @"C:\Python27\python.exe";
+            string python = @"C:\Python27\python.exe";
 
             // python app to call  
-            myPythonApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\py\simplePy.py";
+            string myPythonApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\py\simplePy.py";
 
-        }
-
-        internal string RunScript(int x, int y)
-        {
             // Create new process start info 
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
 

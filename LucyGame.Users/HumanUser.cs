@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LucysGame.Domain;
 
-namespace LucysGame
+namespace LucysGame.User
 {
-    class HumanUser : User
+    public class HumanUser 
     {
-        public override CardChoice ChooseCard(BoardState state)
+        public static CardChoice ChooseCard(BoardState state)
         {
             throw new NotImplementedException();
         }
 
-        public override CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace)
+        public static CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace)
         {
             throw new NotImplementedException();
         }

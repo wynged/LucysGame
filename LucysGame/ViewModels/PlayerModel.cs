@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using LucysGame.Domain;
+using LucysGame.User;
 
 namespace LucysGame.ViewModels
 {
@@ -15,6 +16,17 @@ namespace LucysGame.ViewModels
                 return Player.Name;
             }
         }
+
+        public CardChoice PlayerCardChoice(BoardState state)
+        {
+            return ComputerUser.ChooseCard(state);
+        }
+
+        public CardPlacement PlayerCardPlacement(Card _drawnCard)
+        {
+            return ComputerUser.PlaceCard(Player.CardValues, _drawnCard.Number);
+        }
+
 
         //public int V1
         //{
