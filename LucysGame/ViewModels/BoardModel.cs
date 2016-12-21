@@ -89,6 +89,7 @@ namespace LucysGame.ViewModels
         public void NextTurn()
         {
             TheBoard.GoNextPlayer();
+
             CardChoice choice = TheBoard.CurrentPlayer.PlayerCardChoice(TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer));
             Card card = TheBoard.GetCardFromChoice(choice);
             CardPlacement placement = TheBoard.CurrentPlayer.PlayerCardPlacement(card);
