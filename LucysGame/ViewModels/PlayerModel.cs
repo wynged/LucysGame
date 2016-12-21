@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using LucysGame.Domain;
 
 namespace LucysGame.ViewModels
 {

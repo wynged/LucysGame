@@ -59,8 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Domain\BoardState.cs" />
-    <Compile Include="Domain\CardVisibilityState.cs" />
     <Compile Include="Users\ComputerUser.cs" />
     <Compile Include="Users\HumanUser.cs" />
     <Compile Include="Users\PythonRunner.cs" />
@@ -72,9 +70,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Domain\Board.cs" />
-    <Compile Include="Domain\Card.cs" />
-    <Compile Include="Domain\Player.cs" />
     <Compile Include="ViewModels\BoardModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -109,7 +104,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LucyGame-Domain\LucyGame-Domain.csproj">
+      <Project>{75ea8ac8-021e-45cb-ad83-85ac0e024239}</Project>
+      <Name>LucyGame-Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JSONUtil
+namespace LucysGame.Domain
 {
-    public class Class1
-    {
-    }
+    public enum CardVisibilityState     { Known, Hidden, Public,  }
 }
