@@ -28,9 +28,9 @@ namespace JSONUtil
         {
             try
             {
-                StreamWriter writer = new StreamWriter(@"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\recordedGameplay\tests.txt");
-                writer.Write(JsonStringFromBoardState(state));
-                writer.Write(JsonStringFromResults(results));
+                StreamWriter writer = new StreamWriter(@"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\recordedGameplay\tests.txt", true);
+                writer.WriteLine(JsonStringFromBoardState(state));
+                writer.WriteLine(JsonStringFromResults(results));
                 writer.Close();
                 return true;
             }
