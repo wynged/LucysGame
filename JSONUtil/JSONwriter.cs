@@ -26,12 +26,12 @@ namespace JSONUtil
 
         public static bool RecordStateAndResults(BoardState state, DecisionResults results)
         {
-
             try
             {
                 StreamWriter writer = new StreamWriter(@"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\recordedGameplay\tests.txt");
                 writer.Write(JsonStringFromBoardState(state));
                 writer.Write(JsonStringFromResults(results));
+                writer.Close();
                 return true;
             }
             catch (Exception e)

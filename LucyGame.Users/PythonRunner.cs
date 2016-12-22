@@ -6,9 +6,6 @@ namespace LucysGame.User
 {
     internal static class PythonRunner
     {
-        
-
-        
         internal static string RunScript(int x, int y)
         {
             // full path of python interpreter  
