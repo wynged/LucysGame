@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{187c95bb-b7d1-40e9-ac12-1460652eebcf}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>StateAndRewardRecorder.py</StartupFile>
+    <StartupFile>simplePy.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>

@@ -8,7 +8,7 @@ namespace LucysGame.ViewModels
     internal class PlayerModel : ViewModelBase
     {
         public Player Player { get; internal set; }
-
+        
         public string Name
         {
             get
@@ -17,16 +17,15 @@ namespace LucysGame.ViewModels
             }
         }
 
-        public CardChoice PlayerCardChoice(BoardState state)
+        public CardChoice ComputerChooseCard(BoardState state)
         {
             return ComputerUser.ChooseCard(state);
         }
 
-        public CardPlacement PlayerCardPlacement(Card _drawnCard)
+        public CardPlacement ComputerCardPlacement(Card _drawnCard)
         {
             return ComputerUser.PlaceCard(Player.CardValues, _drawnCard.Number);
         }
-
 
         CardModel[] Cards;
 
@@ -36,10 +35,13 @@ namespace LucysGame.ViewModels
             Cards = p.CardDict.Values.Select(c => new CardModel(c)).ToArray();
         }
 
-        public string CardValues { get
+        public string CardValues
+        {
+            get
             {
                 return String.Join("-", Cards.Select(cm => cm.CardVal));
-            } }
+            }
+        }
 
     }
 }

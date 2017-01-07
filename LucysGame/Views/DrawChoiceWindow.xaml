@@ -1,0 +1,27 @@
+﻿<Window x:Class="LucysGame.Views.DrawChoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LucysGame.ViewModels"
+        mc:Ignorable="d"
+        Title="DrawChoiceWindow" Height="300" Width="300">
+    <Grid>
+        <DockPanel x:Name="page_HumanPage" Background="Beige"  Margin="01,25,22.4,144.8">
+            <Label Content="{Binding TheBoard.CurrentPlayer}" DockPanel.Dock="Top"/>
+            <DockPanel DockPanel.Dock="Top" Margin="10,10,10,10" LastChildFill="False">
+                <Button x:Name="button_ChooseMain" Content="MainDeck" DockPanel.Dock="Left"
+                        Command="{Binding ChooseMain}"
+                        IsEnabled="{Binding NeedToMakeChoice}"/>
+                <Button x:Name="button_ChooseDiscard" Content="Discard" DockPanel.Dock="Right" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="38" >
+                <Button x:Name="button_V1" Content="V1" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_H1" Content="H1" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_V2" Content="V2" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_H2" Content="H2" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_Discard" Content="Discard" DockPanel.Dock="Left" />
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

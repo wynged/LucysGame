@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LucysGame.ViewModels"
+        xmlns:converters="clr-namespace:LucysGame.Converters"
         mc:Ignorable="d"
         Title="Lucy'sGame" Height="350" Width="525">
+    <Window.Resources>
+        <converters:InverseVisibilityConverter x:Key="InverseBool" />
+    </Window.Resources>
     <Window.DataContext>
         <local:BoardModel/>
     </Window.DataContext>
@@ -20,7 +24,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="listBox_Decklist" ItemsSource="{Binding MainDeckCards}" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="150" Margin="200,10,0,0">
+        <ListBox x:Name="listBox_Decklist" ItemsSource="{Binding MainDeckCards}" HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Width="150" Margin="332,207,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -29,9 +33,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="button_NextTurn" Command="{Binding NextTurnCommand}" Height="30" Margin="320,-250,0,0" Width="100">Next Turn</Button>
-        <Label x:Name="label_CurrentPlayer" Content="{Binding NextPlayerName}" Margin="400,50,0,0"/>
-        <ItemsControl Name="items_DiscardPile" Margin="400,70,10,20" ItemsSource="{Binding Path=DiscardPile}" >
+        <Button x:Name="button_NextTurn" Command="{Binding NextTurnCommand}" Height="30" Margin="176,13,242.4,277.8" Width="100">Next Turn</Button>
+        <Label x:Name="label_CurrentPlayer" Content="{Binding NextPlayerName}" Margin="176,59,224.4,210.8"/>
+        <ItemsControl Name="items_DiscardPile" Margin="176,110,234.4,9.8" ItemsSource="{Binding Path=DiscardPile}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -40,6 +44,25 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <DockPanel x:Name="page_HumanPage" Background="Beige"  Margin="298,25,22.4,144.8">
+            <Label Content="{Binding TheBoard, XPath=CurrentPlayer}" DockPanel.Dock="Top"/>
+            <DockPanel DockPanel.Dock="Top" Margin="10,10,10,10" LastChildFill="False">
+                <Button x:Name="button_ChooseMain" Content="MainDeck" DockPanel.Dock="Left"/>
+                <Button x:Name="button_ChooseDiscard" Content="Discard" DockPanel.Dock="Right" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="38" >
+                <Button x:Name="button_V1" Content="V1" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_H1" Content="H1" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_V2" Content="V2" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_H2" Content="H2" DockPanel.Dock="Left" Width="30"/>
+                <Button x:Name="button_Discard" Content="Discard" DockPanel.Dock="Left" />
+
+            </DockPanel>
+        </DockPanel>
+        <DockPanel x:Name="page_ComputerPage" Background="Aqua" Visibility="{Binding CurrentPlayerHuman, Converter={StaticResource InverseBool}}"  Margin="350,50,50,200">
+            <Label Content="It's the Robot!" Margin="0,3,0,0" DockPanel.Dock="Top"/>
+            
+        </DockPanel>
         <!--<Label x:Name="label_CardsLeftInDeck" Content="{Binding MainDeckCardString}" Margin="400,70,0,0"/>-->
     </Grid>
 </Window>

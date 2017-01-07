@@ -12,7 +12,7 @@ namespace LucysGame.User
 
         public static CardChoice ChooseCard(BoardState state)
         {
-            string sum = PythonRunner.RunScript(3, 4);
+            //string sum = PythonRunner.RunScript(3, 4);
             Random rand = new Random();
             string[] choices = Enum.GetNames(typeof(CardChoice));
             int i = rand.Next(choices.Length);

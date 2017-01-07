@@ -11,19 +11,20 @@ namespace LucysGame
     public class ButtonCommand : ICommand
     {
         private Action WhatToExecute;
-        private Func<bool> WhenToExecute;
+        //private Func<bool> WhenToExecute;
 
-        public ButtonCommand(Action _what, Func<bool> _when)
+        public ButtonCommand(Action _what) //, Func<bool> _when)
         {
             WhatToExecute = _what;
-            WhenToExecute = _when;
+            //WhenToExecute = _when;
         }
 
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            return WhenToExecute();
+            return true;
+            //return WhenToExecute();
         }
 
         public void Execute(object parameter)

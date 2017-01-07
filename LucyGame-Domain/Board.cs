@@ -33,9 +33,10 @@ namespace LucysGame.Domain
             return state;
         }
 
-        public Player AddPlayer(string v)
+        public Player AddPlayer(string v, PlayerType playerType)
         {
             Player newPlayer = new Player(v);
+            newPlayer.Type = playerType;
             Players.Add(newPlayer);
             return newPlayer;
         }

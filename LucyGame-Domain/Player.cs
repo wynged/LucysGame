@@ -11,7 +11,6 @@ namespace LucysGame.Domain
     {
         public Dictionary<string, Card> CardDict;
         public string Name { get; internal set; }
-        //private User User {get; set; } 
         public PlayerType Type { get; set; }
 
         public Player(string _name)
@@ -24,7 +23,6 @@ namespace LucysGame.Domain
             CardDict["H2"] = null;
 
             Type = PlayerType.Random;
-            //User = new ComputerUser();
         }
 
         public List<int> CardValues
