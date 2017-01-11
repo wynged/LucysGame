@@ -45,7 +45,7 @@ namespace LucysGame.ViewModels
 
         public int TotalScore { get
             {
-                int total = Cards.Select(cm => int.Parse(cm.CardVal)).Sum();
+                int total = Cards.Select(cm => cm.TrueVal).Sum();
                 return total;
             } }
     }

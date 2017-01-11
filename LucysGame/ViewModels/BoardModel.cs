@@ -108,6 +108,23 @@ namespace LucysGame.ViewModels
             }
         }
 
+        private bool _showTotals = false;
+        public bool ShowTotals
+        {
+            get
+            {
+                return _showTotals;
+            }
+            set
+            {
+                if (value != _showTotals)
+                {
+                    _showTotals = value;
+                    SetPropertyChanged("ShowTotals");
+                }
+            }
+        }
+        
         private int _turnCount = 0;
         public int TurnCount
         {
@@ -150,11 +167,11 @@ namespace LucysGame.ViewModels
         public void TakeTurns()
         {
             int maxTurns = 10;
-            while (true)
+            while (MainDeckCards.Count > 1)
             {
                 if (TurnCount > maxTurns)
                 {
-                    
+                    ShowTotals = true;
                     break;
                 }
                 ProcessCurrentTurn();

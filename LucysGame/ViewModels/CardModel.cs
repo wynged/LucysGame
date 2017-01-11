@@ -33,5 +33,12 @@ namespace LucysGame.ViewModels
                 }
             }
         }
+        public int TrueVal
+        {
+            get
+            {
+                return _card.Number;
+            }
+        }
     }
 }
