@@ -143,23 +143,6 @@ namespace LucysGame.ViewModels
             }
         }
 
-        //private bool _humanNeedToDraw = false;
-        //public bool HumanNeedToDraw
-        //{
-        //    get
-        //    {
-        //        return _humanNeedToDraw;
-        //    }
-        //    private set
-        //    {
-        //        if ((value != _humanNeedToDraw))
-        //        {
-        //            _humanNeedToDraw = value;
-        //            SetPropertyChanged("HumanNeedToDraw");
-        //        }
-        //    }
-        //}
-
         #endregion
 
         #region ---Behavior---
@@ -190,6 +173,7 @@ namespace LucysGame.ViewModels
                 Card card = TheBoard.GetCardFromChoice(choice);
 
                 LucysGame.Views.PlacementChoiceWindow placementWindow = new Views.PlacementChoiceWindow();
+                placementWindow.label_DrawnCard.Content = string.Format("Drawn Value: {0}", card.Number);
                 placementWindow.ShowDialog();
 
                 CardPlacement placement = placementWindow.Placement;
