@@ -43,5 +43,10 @@ namespace LucysGame.ViewModels
             }
         }
 
+        public int TotalScore { get
+            {
+                int total = Cards.Select(cm => int.Parse(cm.CardVal)).Sum();
+                return total;
+            } }
     }
 }

@@ -19,12 +19,6 @@ namespace LucysGame.ViewModels
             _players = new ObservableCollection<PlayerModel>();
 
             NextTurnCommand = new ButtonCommand(TakeTurns);//, ReadyForNextTurn);
-            ChooseMain = new ButtonCommand(() => MakeChoice(CardChoice.MainDeck));
-            ChooseDiscard = new ButtonCommand(() =>
-            {
-                HumanChoice = CardChoice.Discard;
-                NeedToMakeChoice = false;
-            });
 
             this.AddPlayer("Jack", PlayerType.Human);
             this.AddPlayer("Jill", PlayerType.Deep);
@@ -114,25 +108,40 @@ namespace LucysGame.ViewModels
             }
         }
 
-        public CardChoice HumanChoice { get; private set; }
-        private CardChoice _cardChoice;
-
-        private bool _needToChoose;
-        public bool NeedToMakeChoice
+        private int _turnCount = 0;
+        public int TurnCount
         {
             get
             {
-                return _needToChoose;
+                return _turnCount;
             }
-            private set
+            set
             {
-                if ((value != _needToChoose))
+                if(value != _turnCount)
                 {
-                    _needToChoose = value;
-                    SetPropertyChanged("NeedToMakeChoice");
+                    _turnCount = value;
+                    SetPropertyChanged("TurnCount");
                 }
+
             }
         }
+
+        //private bool _humanNeedToDraw = false;
+        //public bool HumanNeedToDraw
+        //{
+        //    get
+        //    {
+        //        return _humanNeedToDraw;
+        //    }
+        //    private set
+        //    {
+        //        if ((value != _humanNeedToDraw))
+        //        {
+        //            _humanNeedToDraw = value;
+        //            SetPropertyChanged("HumanNeedToDraw");
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -140,8 +149,14 @@ namespace LucysGame.ViewModels
 
         public void TakeTurns()
         {
-            for (int i=0; i<10; i++)
+            int maxTurns = 10;
+            while (true)
             {
+                if (TurnCount > maxTurns)
+                {
+                    
+                    break;
+                }
                 ProcessCurrentTurn();
             }
         }
@@ -150,16 +165,19 @@ namespace LucysGame.ViewModels
         {
             if(CurrentPlayerHuman)
             {
-                LucysGame.Views.DrawChoiceWindow drawChoiceWindow = new Views.DrawChoiceWindow();
 
+                LucysGame.Views.DrawChoiceWindow drawChoiceWindow = new Views.DrawChoiceWindow();
                 drawChoiceWindow.ShowDialog();
 
-                if (NeedToMakeChoice == false)
-                {
-                    Card card = TheBoard.GetCardFromChoice(HumanChoice);
-                }
-                    
-                ResetChoices();
+                CardChoice choice = drawChoiceWindow.DrawCard;
+                Card card = TheBoard.GetCardFromChoice(choice);
+
+                LucysGame.Views.PlacementChoiceWindow placementWindow = new Views.PlacementChoiceWindow();
+                placementWindow.ShowDialog();
+
+                CardPlacement placement = placementWindow.Placement;
+                TheBoard.MakePlayerCardPlacement(placement, card);                
+
                 EndTurn();
             }
             else
@@ -189,14 +207,9 @@ namespace LucysGame.ViewModels
 
         private void MakeChoice(CardChoice choice)
         {
-            HumanChoice = choice;
-            NeedToMakeChoice = false;
+            
         }
 
-        private void ResetChoices()
-        {
-            NeedToMakeChoice = true;
-        }
 
         private static CardPlacement GetPlacementChoice(PlayerModel pModel, Card card)
         {
@@ -205,6 +218,7 @@ namespace LucysGame.ViewModels
 
         private void EndTurn()
         {
+            TurnCount++;
             TheBoard.GoNextPlayer();
             RefreshUI();
         }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LucysGame.Domain;
 
 namespace LucysGame.Views
 {
@@ -19,9 +20,22 @@ namespace LucysGame.Views
     /// </summary>
     public partial class DrawChoiceWindow : Window
     {
+        public CardChoice DrawCard;
         public DrawChoiceWindow()
         {
             InitializeComponent();
+        }
+
+        private void button_ChooseMain_Click(object sender, RoutedEventArgs e)
+        {
+            this.DrawCard = CardChoice.MainDeck;
+            this.Close();
+        }
+
+        private void button_ChooseDiscard_Click(object sender, RoutedEventArgs e)
+        {
+            this.DrawCard = CardChoice.Discard;
+            this.Close();
         }
     }
 }
