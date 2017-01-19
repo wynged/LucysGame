@@ -10,11 +10,21 @@
         <Label Name="label_DrawnCard"/>
         <DockPanel  Background="Beige" Margin="10,30,10,0">
             <DockPanel DockPanel.Dock="Top" Height="38" >
-                <Button x:Name="button_V1" Content="V1" DockPanel.Dock="Left" Width="30" Click="button_V1_Click"/>
-                <Button x:Name="button_V2" Content="V2" DockPanel.Dock="Left" Width="30" Click="button_V2_Click"/>
-                <Button x:Name="button_H1" Content="H1" DockPanel.Dock="Left" Width="30" Click="button_H1_Click"/>
-                <Button x:Name="button_H2" Content="H2" DockPanel.Dock="Left" Width="30" Click="button_H2_Click"/>
-                <Button x:Name="button_Discard" Content="Discard" DockPanel.Dock="Left" Click="button_Discard_Click" />
+                <Button x:Name="button_V1" DockPanel.Dock="Left" Width="30" Click="button_V1_Click">
+                    <AccessText>_V1</AccessText>
+                </Button>
+                <Button x:Name="button_V2" DockPanel.Dock="Left" Width="30" Click="button_V2_Click">
+                    <AccessText>_V2</AccessText>
+                </Button>
+                <Button x:Name="button_H1" DockPanel.Dock="Left" Width="30" Click="button_H1_Click">
+                    <AccessText>_H1</AccessText>
+                </Button>
+                <Button x:Name="button_H2" DockPanel.Dock="Left" Width="30" Click="button_H2_Click">
+                    <AccessText>_H2</AccessText>
+                </Button>
+                <Button x:Name="button_Discard" DockPanel.Dock="Left" Click="button_Discard_Click">
+                    <AccessText>_Discard</AccessText>
+                </Button>
             </DockPanel>
         </DockPanel>
     </Grid>

@@ -28,10 +28,15 @@ namespace JSONUtil
         {
             try
             {
-                StreamWriter writer = new StreamWriter(@"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\recordedGameplay\tests.txt", true);
-                writer.WriteLine(JsonStringFromBoardState(state));
-                writer.WriteLine(JsonStringFromResults(results));
-                writer.Close();
+                string basepath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + String.Format("\\Documents\\_code\\_gitHub\\LucysGame\\recordedGameplay\\");
+                string filepath = String.Format("{0} play.txt", System.DateTime.Now.ToString("yyyymmddHHmm"));
+                string fullpath = basepath + filepath;
+
+                using (StreamWriter writer = File.AppendText(fullpath))
+                {
+                    writer.WriteLine(JsonStringFromBoardState(state));
+                    writer.WriteLine(JsonStringFromResults(results));
+                }
                 return true;
             }
             catch (Exception e)

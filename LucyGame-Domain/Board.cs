@@ -29,6 +29,7 @@ namespace LucysGame.Domain
             BoardState state = new BoardState();
             state.PlayerCards = CurrentPlayer.CardDict.Values.ToArray();
             state.DiscardPile = DiscardPile.ToArray();
+            state.PlayerType = CurrentPlayer.Type;
 
             return state;
         }

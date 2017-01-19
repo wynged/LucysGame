@@ -9,10 +9,14 @@
     <Grid>
         <DockPanel x:Name="page_HumanPage" Background="Beige"  Margin="10,10,10,10">
             <DockPanel DockPanel.Dock="Top" Margin="0,0,0,0" LastChildFill="False">
-                <Button x:Name="button_ChooseMain" Content="MainDeck" DockPanel.Dock="Left"
-                        Command="{Binding ChooseMain}" Click="button_ChooseMain_Click"/>
-                <Button x:Name="button_ChooseDiscard" Content="Discard" DockPanel.Dock="Right" 
-                        Command="{Binding ChooseDiscard}" Click="button_ChooseDiscard_Click"/>
+                <Button x:Name="button_ChooseMain"  DockPanel.Dock="Left"
+                        Command="{Binding ChooseMain}" Click="button_ChooseMain_Click">
+                    <AccessText>_MainDeck</AccessText>
+                </Button>
+                <Button x:Name="button_ChooseDiscard" DockPanel.Dock="Right" 
+                        Command="{Binding ChooseDiscard}" Click="button_ChooseDiscard_Click">
+                    <AccessText>_Discard</AccessText>
+                </Button>
             </DockPanel>
         </DockPanel>
     </Grid>

@@ -7,6 +7,7 @@ namespace LucysGame.Domain
     {
         public Card[] PlayerCards { get;  set; }
         public Card[] DiscardPile { get;  set; }
+        public PlayerType PlayerType { get; set; }
         
     }
 }

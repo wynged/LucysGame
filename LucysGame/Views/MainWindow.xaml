@@ -44,7 +44,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="button_StartGame" Command="{Binding NextTurnCommand}" Height="30" Margin="176,13,242.4,277.8" Width="100">Start Game</Button>
+        <Button x:Name="button_StartGame" Command="{Binding StartGameCommand}" Height="30" Margin="176,13,242.4,277.8" Width="100">Start Game</Button>
         <Label x:Name="label_CurrentPlayer" Content="{Binding NextPlayerName}" Margin="175,50,250,240"/>
         <Label Content="{Binding TurnCount}" Margin="175,80,250,200">
             <Label.ContentStringFormat>

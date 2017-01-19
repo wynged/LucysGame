@@ -18,11 +18,11 @@ namespace LucysGame.ViewModels
 
             _players = new ObservableCollection<PlayerModel>();
 
-            NextTurnCommand = new ButtonCommand(TakeTurns);//, ReadyForNextTurn);
+            StartGameCommand = new ButtonCommand(PlayGame);
 
             this.AddPlayer("Jack", PlayerType.Human);
-            this.AddPlayer("Jill", PlayerType.Deep);
-            this.AddPlayer("Jane", PlayerType.Deep);
+            this.AddPlayer("Jill", PlayerType.Human);
+            this.AddPlayer("Jane", PlayerType.Human);
 
             TheBoard.StartGame();
             RefreshUI();
@@ -31,7 +31,7 @@ namespace LucysGame.ViewModels
 
 
         #region ---Bindable---
-        public ButtonCommand NextTurnCommand { get; }
+        public ButtonCommand StartGameCommand { get; }
         public Board TheBoard { get; internal set; }
         public ButtonCommand ChooseMain { get; }
         public ButtonCommand ChooseDiscard { get; }
@@ -147,8 +147,11 @@ namespace LucysGame.ViewModels
 
         #region ---Behavior---
 
-        public void TakeTurns()
+        public void PlayGame()
         {
+            TheBoard.StartGame();
+            RefreshUI();
+
             int maxTurns = 10;
             while (MainDeckCards.Count > 1)
             {
@@ -166,18 +169,23 @@ namespace LucysGame.ViewModels
             if(CurrentPlayerHuman)
             {
 
-                LucysGame.Views.DrawChoiceWindow drawChoiceWindow = new Views.DrawChoiceWindow();
+                Views.DrawChoiceWindow drawChoiceWindow = new Views.DrawChoiceWindow();
+                drawChoiceWindow.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 drawChoiceWindow.ShowDialog();
 
                 CardChoice choice = drawChoiceWindow.DrawCard;
                 Card card = TheBoard.GetCardFromChoice(choice);
 
-                LucysGame.Views.PlacementChoiceWindow placementWindow = new Views.PlacementChoiceWindow();
+                Views.PlacementChoiceWindow placementWindow = new Views.PlacementChoiceWindow();
+                placementWindow.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                
                 placementWindow.label_DrawnCard.Content = string.Format("Drawn Value: {0}", card.Number);
                 placementWindow.ShowDialog();
 
                 CardPlacement placement = placementWindow.Placement;
-                TheBoard.MakePlayerCardPlacement(placement, card);                
+                int change = TheBoard.MakePlayerCardPlacement(placement, card);
+
+                RecordMoveandResults(TheBoard.GetBoardStateOfPlayer(TheBoard.CurrentPlayer), choice, card, placement, change);
 
                 EndTurn();
             }
@@ -189,26 +197,26 @@ namespace LucysGame.ViewModels
                 CardChoice choice = pModel.ComputerChooseCard(state);
 
                 Card card = TheBoard.GetCardFromChoice(choice);
-                
+
                 CardPlacement placement = GetPlacementChoice(pModel, card);
 
                 int change = TheBoard.MakePlayerCardPlacement(placement, card);
 
-                DecisionResults results = new DecisionResults();
-                results.DrawChoice = choice;
-                results.DrawnCardValue = card.Number;
-                results.PlacementChoice = placement;
-                results.HandValueChange = change;
-
-                JSONUtil.JSONwriter.RecordStateAndResults(state, results);
+                RecordMoveandResults(state, choice, card, placement, change);
 
                 EndTurn();
             }
         }
 
-        private void MakeChoice(CardChoice choice)
+        private static void RecordMoveandResults(BoardState state, CardChoice choice, Card card, CardPlacement placement, int change)
         {
-            
+            DecisionResults results = new DecisionResults();
+            results.DrawChoice = choice;
+            results.DrawnCardValue = card.Number;
+            results.PlacementChoice = placement;
+            results.HandValueChange = change;
+
+            JSONwriter.RecordStateAndResults(state, results);
         }
 
 

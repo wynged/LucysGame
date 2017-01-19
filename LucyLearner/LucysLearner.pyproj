@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{187c95bb-b7d1-40e9-ac12-1460652eebcf}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>simplePy.py</StartupFile>
+    <StartupFile>TrainNN_DrawChoice.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -22,10 +22,22 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="simplePy.py" />
-    <Compile Include="StateAndRewardRecorder.py">
+    <Compile Include="Encode_Decode.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PredictWithNN.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="simplePy.py" />
+    <Compile Include="ReadRecordings.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TrainNN_DrawChoice.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="model\" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
