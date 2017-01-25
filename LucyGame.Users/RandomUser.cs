@@ -7,7 +7,7 @@ using LucysGame.Domain;
 
 namespace LucysGame.User
 {
-    public static class ComputerUser 
+    public static class RandomUser 
     {
 
         public static CardChoice ChooseCard(BoardState state)

@@ -4,9 +4,10 @@ from os.path import isfile, join
 
 
 filepath = "C:\\Users\\erudisaile\\Documents\\_code\\_gitHub\\LucysGame\\recordedGameplay\\tests - Copy.txt"
-DEFAULT_FOLDER_PATH = "C:\\Users\\erudisaile\\Documents\\_code\\_gitHub\\LucysGame\\recordedGameplay\\"
+DEFAULT_EXPERIENCES_PATH = "C:\\Users\\erudisaile\\Documents\\_code\\_gitHub\\LucysGame\\recordedGameplay\\"
+DEFAULT_MEMORY_PATH = "C:\\Users\\erudisaile\\Documents\\_code\\_gitHub\\LucysGame\\recordedGameplay\\memories"
 
-def LoadJsonsFromFolder(aFolderPath = DEFAULT_FOLDER_PATH):
+def LoadNewJsonsFromFolder(aFolderPath = DEFAULT_EXPERIENCES_PATH):
     allfiles = listdir(aFolderPath) 
     #print allfiles
 

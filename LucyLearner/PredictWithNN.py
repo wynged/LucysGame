@@ -1,7 +1,10 @@
 from keras.models import Sequential, model_from_json
 import numpy as np
+import Encode_Decode
 
-def LoadSavedModel():
+HIGHEST_NUM_IN_DECK = 12
+
+def LoadDrawChoiceModel():
     # load json and create model
     json_file = open('model/model.json', 'r')
     loaded_model_json = json_file.read()
@@ -12,13 +15,17 @@ def LoadSavedModel():
     print("Loaded model from disk")
     return loaded_model
 
-def DrawCardChoice():
-    model = LoadSavedModel()
+def DrawCardChoice(drawNumber):
+    situationArray = Encode_Decode.encode_one_hot(drawNumber, HIGHEST_NUM_IN_DECK)
+    model = LoadDrawChoiceModel()
     model.compile(optimizer='rmsprop',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
-    situation = np.array([[1,0,0,0,0,0,0,0,0,0,0,0,0]])
-    print model.predict(situation)
+              loss='mse')
+    print situationArray
+    predictionVec = model.predict(np.array([situationArray]))
+    return Encode_Decode.get_choice_val_diff(predictionVec)
 
-DrawCardChoice()
 
+
+chosenAction, value, diff = DrawCardChoice(12)
+
+print "DO: {0}  GuessValue: {1}, DiffMaxToMin: {2}".format(chosenAction, value, diff)

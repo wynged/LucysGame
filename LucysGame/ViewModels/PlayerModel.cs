@@ -19,12 +19,12 @@ namespace LucysGame.ViewModels
 
         public CardChoice ComputerChooseCard(BoardState state)
         {
-            return ComputerUser.ChooseCard(state);
+            return RandomUser.ChooseCard(state);
         }
 
         public CardPlacement ComputerCardPlacement(Card _drawnCard)
         {
-            return ComputerUser.PlaceCard(Player.CardValues, _drawnCard.Number);
+            return RandomUser.PlaceCard(Player.CardValues, _drawnCard.Number);
         }
 
         CardModel[] Cards;
