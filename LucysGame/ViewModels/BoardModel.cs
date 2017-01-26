@@ -20,7 +20,7 @@ namespace LucysGame.ViewModels
 
             StartGameCommand = new ButtonCommand(PlayGame);
 
-            this.AddPlayer("Jack", PlayerType.Human);
+            this.AddPlayer("Jack", PlayerType.Random);
             this.AddPlayer("Jill", PlayerType.Human);
             this.AddPlayer("Jane", PlayerType.Human);
 
@@ -52,11 +52,11 @@ namespace LucysGame.ViewModels
                 return TheBoard.MainDeck.Count.ToString();
             }
         }
-        public string NextPlayerName
+        public string CurrentPlayerName
         {
             get
             {
-                return TheBoard.GetNextPlayer().Name;
+                return TheBoard.CurrentPlayer.Name;
             }
         }
         public ObservableCollection<Card> MainDeckCards

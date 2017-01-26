@@ -25,6 +25,9 @@
     <Compile Include="Encode_Decode.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Get_Draw_Choice.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PredictWithNN.py">
       <SubType>Code</SubType>
     </Compile>

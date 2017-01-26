@@ -6,13 +6,13 @@ namespace LucysGame.User
 {
     internal static class PythonRunner
     {
-        internal static string RunScript(int x, int y)
+        internal static string ChooseDrawCard(int x)
         {
             // full path of python interpreter  
             string python = @"C:\Python27\python.exe";
 
             // python app to call  
-            string myPythonApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\py\simplePy.py";
+            string myPythonApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\LucysLearner\Get_Draw_Choice.py";
 
             // Create new process start info 
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
@@ -23,7 +23,7 @@ namespace LucysGame.User
 
             // start python app with 3 arguments  
             // 1st argument is pointer to itself, 2nd and 3rd are actual arguments we want to send 
-            myProcessStartInfo.Arguments = myPythonApp + " " + x + " " + y;
+            myProcessStartInfo.Arguments = myPythonApp + " " + x;
 
             Process myProcess = new Process();
             // assign start information to the process 
@@ -43,7 +43,6 @@ namespace LucysGame.User
             myProcess.Close();
 
             return myString;
-
         }
     }
 }
