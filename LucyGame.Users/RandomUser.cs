@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LucysGame.Domain;
 
-namespace LucysGame.User
+namespace LucysGame.Users
 {
     public static class RandomUser 
     {

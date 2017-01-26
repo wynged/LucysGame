@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using LucysGame.Domain;
-using LucysGame.User;
+using LucysGame.Users;
 
 namespace LucysGame.ViewModels
 {
@@ -19,7 +19,15 @@ namespace LucysGame.ViewModels
 
         public CardChoice ComputerChooseCard(BoardState state)
         {
-            return RandomUser.ChooseCard(state);
+            switch (this.Player.Type)
+            {
+                case (PlayerType.Random):
+                    return RandomUser.ChooseCard(state);
+                case (PlayerType.Deep):
+                    return DeepNNUser.ChooseCard(state);
+                default:
+                    return CardChoice.MainDeck;
+            }
         }
 
         public CardPlacement ComputerCardPlacement(Card _drawnCard)

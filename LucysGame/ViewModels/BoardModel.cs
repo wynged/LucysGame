@@ -21,7 +21,7 @@ namespace LucysGame.ViewModels
             StartGameCommand = new ButtonCommand(PlayGame);
 
             this.AddPlayer("Jack", PlayerType.Random);
-            this.AddPlayer("Jill", PlayerType.Human);
+            this.AddPlayer("Jill", PlayerType.Deep);
             this.AddPlayer("Jane", PlayerType.Human);
 
             TheBoard.StartGame();
@@ -57,6 +57,7 @@ namespace LucysGame.ViewModels
             get
             {
                 return TheBoard.CurrentPlayer.Name;
+                
             }
         }
         public ObservableCollection<Card> MainDeckCards
@@ -247,7 +248,7 @@ namespace LucysGame.ViewModels
             }
             this.SetPropertyChanged("MainDeckCards");
             this.SetPropertyChanged("DiscardPile");
-            this.SetPropertyChanged("NextPlayerName");
+            this.SetPropertyChanged("CurrentPlayerName");
             this.SetPropertyChanged("CurrentPlayerHuman");
         }
 

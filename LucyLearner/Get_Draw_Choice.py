@@ -2,6 +2,7 @@ from PredictWithNN import DrawCardChoice
 
 import sys
 
-chosenAction, value, diff = DrawCardChoice(sys.argv[1])
+chosenAction, value, diff = DrawCardChoice(5)
 
-print chosenAction, ":", value, ":", diff
+#print chosenAction, ":", value, ":", diff
+print chosenAction

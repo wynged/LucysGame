@@ -2,7 +2,7 @@
 using System.IO;
 
 
-namespace LucysGame.User
+namespace LucysGame.Users
 {
     internal static class PythonRunner
     {
@@ -12,20 +12,23 @@ namespace LucysGame.User
             string python = @"C:\Python27\python.exe";
 
             // python app to call  
-            string myPythonApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\LucysLearner\Get_Draw_Choice.py";
-
+            string pythonApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\LucyLearner\Get_Draw_Choice.py";
+            string simpleApp = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\LucyLearner\simplePy.py";
             // Create new process start info 
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
 
             // make sure we can read the output from stdout 
             myProcessStartInfo.UseShellExecute = false;
             myProcessStartInfo.RedirectStandardOutput = true;
+            myProcessStartInfo.RedirectStandardError = true;
 
             // start python app with 3 arguments  
             // 1st argument is pointer to itself, 2nd and 3rd are actual arguments we want to send 
-            myProcessStartInfo.Arguments = myPythonApp + " " + x;
+            myProcessStartInfo.Arguments = pythonApp + " " + x;// + " " + 4;
 
             Process myProcess = new Process();
+            myProcess.EnableRaisingEvents = true;
+            
             // assign start information to the process 
             myProcess.StartInfo = myProcessStartInfo;
 
@@ -34,15 +37,24 @@ namespace LucysGame.User
 
             // Read the standard output of the app we called.  
             StreamReader myStreamReader = myProcess.StandardOutput;
-            string myString = myStreamReader.ReadLine();
+            string lastLine = "";
+            while(myStreamReader.EndOfStream == false)
+            {
+                lastLine = myStreamReader.ReadLine();
+            }
 
+            
+
+            StreamReader errorReader = myProcess.StandardError;
+            
+            string myerror = errorReader.ReadToEnd();
             // wait exit signal from the app we called 
             myProcess.WaitForExit();
 
             // close the process 
             myProcess.Close();
 
-            return myString;
+            return lastLine;
         }
     }
 }
