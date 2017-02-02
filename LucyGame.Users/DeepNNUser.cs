@@ -22,7 +22,13 @@ namespace LucysGame.Users
 
         public static CardPlacement PlaceCard(List<int> _playerCards, int _cardToPlace)
         {
-            return CardPlacement.Discard;
+            _playerCards.Add(_cardToPlace);
+            string choiceString = PythonRunner.ChooseCardPlacement(_playerCards);
+            int choiceInt = int.Parse(choiceString);
+
+            CardPlacement placement = (CardPlacement)Enum.ToObject(typeof(CardPlacement), choiceInt);
+
+            return placement;
         } 
     }
 }

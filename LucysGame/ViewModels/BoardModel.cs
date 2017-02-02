@@ -21,8 +21,8 @@ namespace LucysGame.ViewModels
             StartGameCommand = new ButtonCommand(PlayGame);
 
             this.AddPlayer("Jack", PlayerType.Random);
-            this.AddPlayer("Jill", PlayerType.Deep);
-            this.AddPlayer("Jane", PlayerType.Human);
+            this.AddPlayer("Jill", PlayerType.Human);
+            this.AddPlayer("Jane", PlayerType.Deep);
 
             TheBoard.StartGame();
             RefreshUI();
@@ -151,9 +151,10 @@ namespace LucysGame.ViewModels
         public void PlayGame()
         {
             TheBoard.StartGame();
+            TurnCount = 0;
             RefreshUI();
 
-            int maxTurns = 10;
+            int maxTurns = 15;
             while (MainDeckCards.Count > 1)
             {
                 if (TurnCount > maxTurns)

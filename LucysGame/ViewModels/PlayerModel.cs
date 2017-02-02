@@ -32,7 +32,17 @@ namespace LucysGame.ViewModels
 
         public CardPlacement ComputerCardPlacement(Card _drawnCard)
         {
-            return RandomUser.PlaceCard(Player.CardValues, _drawnCard.Number);
+            switch(this.Player.Type)
+            {
+
+                case (PlayerType.Random):
+                    return RandomUser.PlaceCard(Player.CardValues, _drawnCard.Number);
+                case (PlayerType.Deep):
+                    return DeepNNUser.PlaceCard(Player.CardValues, _drawnCard.Number);
+                default:
+                    return CardPlacement.Discard;
+
+            }
         }
 
         CardModel[] Cards;

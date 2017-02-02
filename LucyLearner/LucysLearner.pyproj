@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{187c95bb-b7d1-40e9-ac12-1460652eebcf}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>PredictWithNN.py</StartupFile>
+    <StartupFile>PlaceCardWithNN.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -25,7 +25,11 @@
     <Compile Include="Encode_Decode.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Get_Card_Placement.py" />
     <Compile Include="Get_Draw_Choice.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlaceCardWithNN.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PredictWithNN.py">
@@ -36,6 +40,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TrainNN_DrawChoice.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TrainNN_PlaceCard.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

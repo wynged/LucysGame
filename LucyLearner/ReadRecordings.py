@@ -44,8 +44,13 @@ def Hand_Discard_Choice_CardVal(aJson):
     #   1->MainDeck
     return hand, lastCardVal, drawChoice, drawnCardValue
 
-def GetDrawnCard_Choice_HandChange_Tuple(aJson):
+def Get_Hand_DrawnCard_Choice_HandChange_Tuple(aJson):
     state, results = aJson
+
+    hand = []
+    for c in state['PlayerCards']:
+        hand.append(GetVisibleCardValue(c))
+
     drawnCard = results["DrawnCardValue"]
     playChoice = results["PlacementChoice"]
     handChange = results["HandValueChange"]
@@ -56,7 +61,7 @@ def GetDrawnCard_Choice_HandChange_Tuple(aJson):
     #   2-> H1
     #   3-> H2
     #   4-> Discard
-    return drawnCard, playChoice, handChange
+    return hand, drawnCard, playChoice, handChange
 
 #for j in LoadJsonsFromFolder( ):
 #    #print j
