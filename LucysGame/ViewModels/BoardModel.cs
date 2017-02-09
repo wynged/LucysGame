@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using LucysGame.Domain;
 using JSONUtil;
 using LucysGame.Users;
+using System.Diagnostics;
 
 namespace LucysGame.ViewModels
 {
@@ -36,6 +37,8 @@ namespace LucysGame.ViewModels
             ModelManager.ReTrainCardPlacement();
             ModelManager.MoveTrainedGameplay();
         }
+
+
 
 
 
@@ -180,9 +183,13 @@ namespace LucysGame.ViewModels
         public void Training()
         {
             int Number_Of_Games = 5;
+            int gameTimeInSeconds = 120;
             int maxTurns = 15;
 
-            for (int i = 0; i < Number_Of_Games; i++)
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            //for (int i = 0; i < Number_Of_Games; i++)
+            while (watch.Elapsed.TotalSeconds < gameTimeInSeconds)
             {
                 TheBoard.StartGame();
                 TurnCount = 0;
@@ -197,9 +204,21 @@ namespace LucysGame.ViewModels
                     }
                     ProcessCurrentTurn();
                 }
+                JSONwriter.RecordScoreString(MakeScoreString());
                 UpdateModel();
             }
         
+        }
+
+        private string MakeScoreString()
+        {
+            string score = "";
+            foreach (PlayerModel p in PlayerModels)
+            {
+                score = score + String.Format("{0}--{1} : ", p.Name, p.TotalScore);
+            }
+            score = score + Environment.NewLine;
+            return score;
         }
 
         public void ProcessCurrentTurn()

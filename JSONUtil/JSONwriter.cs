@@ -44,5 +44,16 @@ namespace JSONUtil
                 return false;
             }
         }
+
+        public static bool RecordScoreString(string score)
+        {
+            string scoresPath = @"C:\Users\erudisaile\Documents\_code\_gitHub\LucysGame\recordedGameplay\oldPlays\_scores.txt";
+            using (StreamWriter writer = File.AppendText(scoresPath))
+            {
+                writer.WriteLine(score);
+            }
+
+            return true;
+        }
     }
 }

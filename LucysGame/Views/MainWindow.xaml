@@ -34,7 +34,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox ItemsSource="{Binding PlayerModels}" Margin="300,10,10,200" Visibility="{Binding ShowTotals, Converter={StaticResource BoolToVis}}">
+        <ListBox ItemsSource="{Binding PlayerModels}" Margin="332,10,10.4,199.8" Visibility="{Binding ShowTotals, Converter={StaticResource BoolToVis}}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
