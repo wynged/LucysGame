@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using LucysGame.Domain;
 using JSONUtil;
-using System.Threading.Tasks;
+using LucysGame.Users;
 
 namespace LucysGame.ViewModels
 {
@@ -19,19 +19,30 @@ namespace LucysGame.ViewModels
             _players = new ObservableCollection<PlayerModel>();
 
             StartGameCommand = new ButtonCommand(PlayGame);
+            TrainCommand = new ButtonCommand(Training);
+            UpdateModelCommand = new ButtonCommand(UpdateModel);
 
-            this.AddPlayer("Jack", PlayerType.Random);
-            this.AddPlayer("Jill", PlayerType.Human);
-            this.AddPlayer("Jane", PlayerType.Deep);
+            this.AddPlayer("Jack-Rand", PlayerType.Random);
+            this.AddPlayer("Jill-Deep", PlayerType.Deep);
+            this.AddPlayer("Jane-Deep", PlayerType.Deep);
 
             TheBoard.StartGame();
             RefreshUI();
+        }
+
+        private void UpdateModel()
+        {
+            ModelManager.ReTrainDrawChoice();
+            ModelManager.ReTrainCardPlacement();
+            ModelManager.MoveTrainedGameplay();
         }
 
 
 
         #region ---Bindable---
         public ButtonCommand StartGameCommand { get; }
+        public ButtonCommand TrainCommand { get;  }
+        public ButtonCommand UpdateModelCommand { get;  }
         public Board TheBoard { get; internal set; }
         public ButtonCommand ChooseMain { get; }
         public ButtonCommand ChooseDiscard { get; }
@@ -164,6 +175,31 @@ namespace LucysGame.ViewModels
                 }
                 ProcessCurrentTurn();
             }
+        }
+
+        public void Training()
+        {
+            int Number_Of_Games = 5;
+            int maxTurns = 15;
+
+            for (int i = 0; i < Number_Of_Games; i++)
+            {
+                TheBoard.StartGame();
+                TurnCount = 0;
+                RefreshUI();
+
+                while (MainDeckCards.Count > 1)
+                {
+                    if (TurnCount > maxTurns)
+                    {
+                        ShowTotals = true;
+                        break;
+                    }
+                    ProcessCurrentTurn();
+                }
+                UpdateModel();
+            }
+        
         }
 
         public void ProcessCurrentTurn()

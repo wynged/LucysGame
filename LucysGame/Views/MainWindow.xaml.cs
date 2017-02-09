@@ -24,5 +24,10 @@ namespace LucysGame
         {
             InitializeComponent();
         }
+
+        private void button_StartGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

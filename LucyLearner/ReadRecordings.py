@@ -14,11 +14,15 @@ def LoadNewJsonsFromFolder(aFolderPath = DEFAULT_EXPERIENCES_PATH):
     allJson = []
 
     for f in allfiles:
-        opened = open(aFolderPath+f)
+        try:
+            opened = open(aFolderPath+f)
+        except:
+            continue
         state = json.loads(opened.readline())
         result = json.loads(opened.readline())
 
-        allJson.append( [state, result] );
+        allJson.append( [state, result] )
+        opened.close()
 
     return allJson
 

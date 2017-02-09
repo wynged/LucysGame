@@ -25,7 +25,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="listBox_Decklist" ItemsSource="{Binding MainDeckCards}" HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Width="150" Margin="332,207,0,0">
+        <ListBox x:Name="listBox_Decklist" ItemsSource="{Binding MainDeckCards}" Visibility="Hidden" HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Width="150" Margin="332,207,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -44,22 +44,26 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="button_StartGame" Command="{Binding StartGameCommand}" Height="30" Margin="176,13,242.4,277.8" Width="100">Start Game</Button>
-        <Label x:Name="label_CurrentPlayer" Content="{Binding CurrentPlayerName}" Margin="175,50,250,240"/>
-        <Label Content="{Binding TurnCount}" Margin="175,80,250,200">
-            <Label.ContentStringFormat>
-                TurnNo. {0}
-            </Label.ContentStringFormat>
-        </Label>
-        <Label Content="Discards" Margin="175,100,250,180"/>
-        <ItemsControl Name="items_DiscardPile" Margin="175,130,250,10" ItemsSource="{Binding Path=DiscardPile}" >
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Number}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <StackPanel Margin="170,10,200,10">
+            <Button x:Name="button_StartGame" Command="{Binding StartGameCommand}"   Width="100" Margin="5" Click="button_StartGame_Click">Start Game</Button>
+            <Button Command="{Binding TrainCommand}" Content="Train" Width="100" Margin="5" />
+            <Button Command="{Binding UpdateModelCommand}" Content="Model Update" Width="100" Margin="5" />
+            <Label x:Name="label_CurrentPlayer" Content="{Binding CurrentPlayerName}" />
+            <Label Content="{Binding TurnCount}" >
+                <Label.ContentStringFormat>
+                    TurnNo. {0}
+                </Label.ContentStringFormat>
+            </Label>
+            <Label Content="Discards" />
+            <ItemsControl Name="items_DiscardPile"  ItemsSource="{Binding Path=DiscardPile}" Height="100">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Number}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </Window>
